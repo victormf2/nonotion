@@ -30,12 +30,15 @@ function NotionTokenPrompt() {
 
   return (
     <form onSubmit={onSubmit}>
+      <div>Insira o notion token</div>
       <div>
         <input
           name="notion-token"
           type="text"
           value={userProvidedToken}
           onChange={(evt) => setUserProvidedToken(evt.target.value)}
+          autoFocus
+          style={{ width: '100%' }}
         />
       </div>
       <button type="submit" disabled={disabled}>
