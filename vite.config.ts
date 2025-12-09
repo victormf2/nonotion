@@ -9,9 +9,14 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+      },
       devOptions: {
         enabled: process.env.CI === 'true' ? false : true,
       },
+      includeAssets: ['nonotion.png'],
       manifest: {
         name: 'nonotion',
         short_name: 'nonotion',
@@ -19,12 +24,12 @@ export default defineConfig({
         theme_color: '#ffffff',
         icons: [
           {
-            src: 'nonotion-192x192.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'nonotion-512x512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },
