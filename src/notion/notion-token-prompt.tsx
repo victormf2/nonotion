@@ -5,10 +5,10 @@ import {
   type FormEvent,
   type PropsWithChildren,
 } from 'react'
-import { useNotionToken } from './notion-token-context'
+import { useNotion } from './notion-context'
 
 export function WithNotionToken({ children }: PropsWithChildren) {
-  const { token } = useNotionToken()
+  const { token } = useNotion()
 
   if (token == null) {
     return <NotionTokenPrompt />
@@ -19,7 +19,7 @@ export function WithNotionToken({ children }: PropsWithChildren) {
 
 function NotionTokenPrompt() {
   const [userProvidedToken, setUserProvidedToken] = useState('')
-  const { setToken } = useNotionToken()
+  const { setToken } = useNotion()
 
   const normalizedValue = userProvidedToken.trim()
   const disabled = normalizedValue.length === 0
@@ -53,7 +53,11 @@ function NotionTokenPrompt() {
 
   return (
     <form onSubmit={onSubmit}>
-      <div>Insira o notion token</div>
+      <div>
+        Insira o{' '}
+        <a href="https://www.notion.so/profile/integrations">token do notion</a>
+        .
+      </div>
       <div>
         <input
           autoFocus

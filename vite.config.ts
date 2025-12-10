@@ -12,6 +12,21 @@ export default defineConfig({
       injectRegister: 'auto',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        runtimeCaching: [
+          // {
+          //   handler: 'NetworkOnly',
+          //   urlPattern: /\/api\/.*\.json/,
+          //   method: 'POST',
+          //   options: {
+          //     backgroundSync: {
+          //       name: 'myQueueName',
+          //       options: {
+          //         maxRetentionTime: 24 * 60,
+          //       },
+          //     },
+          //   },
+          // },
+        ],
       },
       devOptions: {
         enabled: process.env.CI === 'true' ? false : true,
