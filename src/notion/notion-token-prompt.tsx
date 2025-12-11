@@ -73,7 +73,7 @@ function NotionTokenPrompt() {
           name="notion-token"
           onChange={(evt) => setUserProvidedToken(evt.target.value)}
           ref={textbox}
-          type="text"
+          type="password"
           value={userProvidedToken}
           className="bg-gray-700 rounded-2xl p-4 resize-none disabled:bg-gray-600"
         />

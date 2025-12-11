@@ -1,12 +1,13 @@
 import { useState, type FormEvent } from 'react'
 import { toast, Toaster } from 'sonner'
 import { NOTION_DATABASE_ID } from './constants'
-import { useNotionClient } from './notion/notion-context'
+import { useNotion, useNotionClient } from './notion/notion-context'
 import { NotionProvider } from './notion/notion-provider'
 import { WithNotionToken } from './notion/notion-token-prompt'
 
 function Renderrr() {
   const client = useNotionClient()
+  const { setToken } = useNotion()
 
   const [text, setText] = useState('')
   const [disabled, setDisabled] = useState(false)
@@ -67,24 +68,35 @@ function Renderrr() {
     }
   }
 
+  function resetToken() {
+    setToken(null)
+  }
+
   return (
-    <form onSubmit={onSubmit} className="flex flex-col h-full gap-4 p-4">
-      <div className="grow flex items-center justify-center">
-        <textarea
-          name="text"
-          value={text}
-          onChange={(evt) => setText(evt.target.value)}
-          className="h-full w-full bg-gray-700 rounded-2xl p-4 resize-none disabled:bg-gray-600"
-          disabled={disabled}
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        className="grow-0 flex justify-center bg-amber-600 active:bg-amber-500 rounded-2xl p-2 disabled:bg-gray-600"
+    <form onSubmit={onSubmit} className="flex flex-col h-dvh gap-4 p-4">
+      <textarea
+        name="text"
+        value={text}
+        onChange={(evt) => setText(evt.target.value)}
+        className="grow w-full bg-gray-700 rounded-2xl p-4 resize-none disabled:bg-gray-600"
         disabled={disabled}
-      >
-        Enviado
-      </button>
+      ></textarea>
+      <div className="flex grow-0 gap-4">
+        <button
+          type="button"
+          className="grow-0 flex justify-center bg-amber-600 active:bg-amber-500 rounded-full p-2 disabled:bg-gray-600"
+          onClick={resetToken}
+        >
+          ⬅️
+        </button>
+        <button
+          type="submit"
+          className="grow flex justify-center bg-amber-600 active:bg-amber-500 rounded-2xl p-2 disabled:bg-gray-600"
+          disabled={disabled}
+        >
+          Enviado
+        </button>
+      </div>
     </form>
   )
 }

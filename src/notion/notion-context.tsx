@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react'
 export type NotionContext = {
   token: string | null
   client: Client | null
-  setToken: (token: string) => void
+  setToken: (token: string | null) => void
 }
 export const NotionContext = createContext<NotionContext | null>(null)
 
