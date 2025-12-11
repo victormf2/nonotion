@@ -32,7 +32,7 @@ export default defineConfig({
               backgroundSync: {
                 name: 'myQueueName',
                 options: {
-                  maxRetentionTime: 24 * 60,
+                  maxRetentionTime: 7 * 24 * 60, // retry for 7 days (specified in minutes)
                 },
               },
             },
