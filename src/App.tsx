@@ -118,7 +118,7 @@ function getItemsFromText(text: string): Item[] {
     if (line.length === 0) {
       return null
     }
-    const parts = line.split(/(\s+)/)
+    const parts = line.split(/\s+/)
 
     let number = Number(parts[0])
     let food = parts.slice(1).join(' ')
