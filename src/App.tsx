@@ -51,6 +51,12 @@ function Renderrr() {
                 type: 'number',
                 number: item.number,
               },
+              Date: {
+                type: 'date',
+                date: {
+                  start: new Date().toISOString(),
+                },
+              },
             },
           })
         } catch (error) {
