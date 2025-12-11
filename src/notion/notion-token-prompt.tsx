@@ -52,10 +52,19 @@ function NotionTokenPrompt() {
   }, [])
 
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col gap-4 p-4 justify-center items-center h-full"
+    >
       <div>
         Insira o{' '}
-        <a href="https://www.notion.so/profile/integrations">token do notion</a>
+        <a
+          href="https://www.notion.so/profile/integrations"
+          className="text-blue-400"
+          target="_blank"
+        >
+          token do notion
+        </a>
         .
       </div>
       <div>
@@ -64,12 +73,16 @@ function NotionTokenPrompt() {
           name="notion-token"
           onChange={(evt) => setUserProvidedToken(evt.target.value)}
           ref={textbox}
-          style={{ width: '100%' }}
           type="text"
           value={userProvidedToken}
+          className="bg-gray-700 rounded-2xl p-4 resize-none disabled:bg-gray-600"
         />
       </div>
-      <button type="submit" disabled={disabled}>
+      <button
+        type="submit"
+        className="bg-amber-600 active:bg-amber-500 rounded-2xl p-2 disabled:bg-gray-600"
+        disabled={disabled}
+      >
         Confirmar
       </button>
     </form>

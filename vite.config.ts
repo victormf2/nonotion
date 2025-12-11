@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -7,25 +8,35 @@ export default defineConfig({
   base: '/nonotion/',
   plugins: [
     react(),
+    tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         runtimeCaching: [
-          // {
-          //   handler: 'NetworkOnly',
-          //   urlPattern: /\/api\/.*\.json/,
-          //   method: 'POST',
-          //   options: {
-          //     backgroundSync: {
-          //       name: 'myQueueName',
-          //       options: {
-          //         maxRetentionTime: 24 * 60,
-          //       },
-          //     },
-          //   },
-          // },
+          {
+            handler: 'NetworkOnly',
+            urlPattern: (options) => {
+              console.log(options.url)
+              return (
+                options.url.hostname ===
+                'nonotion.victormachadodefranca.workers.dev'
+              )
+            },
+            method: 'POST',
+            options: {
+              backgroundSync: {
+                name: 'myQueueName',
+                options: {
+                  maxRetentionTime: 24 * 60,
+                },
+              },
+            },
+          },
         ],
       },
       devOptions: {
