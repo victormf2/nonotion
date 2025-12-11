@@ -12,7 +12,7 @@
 body {
   @apply m-0
     flex
-    min-h-dvh
+    min-h-svh
     min-w-96;
 }
 

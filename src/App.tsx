@@ -73,7 +73,7 @@ function Renderrr() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col h-dvh gap-4 p-4">
+    <form onSubmit={onSubmit} className="flex flex-col h-svh gap-4 p-4">
       <textarea
         name="text"
         value={text}
